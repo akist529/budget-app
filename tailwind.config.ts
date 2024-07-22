@@ -6,6 +6,8 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [icons],
+  plugins: [
+    icons
+  ],
 } satisfies Config
 

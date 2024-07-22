@@ -24,7 +24,8 @@
         "baseUrl": ".",
         "paths": {
             "~/*": ["./app/*"],
-            "@components/*": ["./app/components/*"]
+            "@components/*": ["./app/components/*"],
+            "@icons/*": ["./node_modules/rocketicons/*"]
         },
         "noEmit": true
     }
