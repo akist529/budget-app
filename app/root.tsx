@@ -1,11 +1,9 @@
-import {
-    Links,
-    Meta,
-    Outlet,
-    Scripts,
-} from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
+import { useState } from "react";
 import type { LinksFunction } from "@remix-run/node";
 import stylesheet from "~/tailwind.css?url";
+import Navbar from '@components/navbar';
+import Drawer from '~/components/drawer';
 import IndexPage from './routes/index';
 
 export const links: LinksFunction = () => [
@@ -13,6 +11,8 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App() {
+    const [displayDrawer, setDisplayDrawer] = useState(false);
+
     return (
         <html>
             <head>
@@ -25,6 +25,8 @@ export default function App() {
                 <Links />
             </head>
             <body>
+                { displayDrawer && <Drawer setDisplayDrawer={setDisplayDrawer} /> }
+                <Navbar setDisplayDrawer={setDisplayDrawer} />
                 <IndexPage />
                 <Outlet />
                 <Scripts />
