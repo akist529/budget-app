@@ -15,6 +15,9 @@ export default function Drawer(props: any) {
             <nav className="w-full">
                 <ul className="flex flex-col gap-5">
                     <li>
+                        <a href="/login" onClick={() => setDisplayDrawer(false)}>Login</a>
+                    </li>
+                    <li>
                         <a href="/" onClick={() => setDisplayDrawer(false)}>Home</a>
                     </li>
                     <li>

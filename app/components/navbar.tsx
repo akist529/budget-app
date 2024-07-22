@@ -20,7 +20,7 @@ export default function Navbar(props: any) {
                     <a href="/expenses">Expenses</a>
                 </li>
             </ul>
-            <button className="flex-initial hidden lg:block">Log In</button>
+            <a className="flex-initial hidden lg:block" href="/login">Log In</a>
             <button onClick={() => setDisplayDrawer(true)}>
                 <SlMenu className="flex-initial lg:hidden size-8 lg:size-32" />
             </button>
