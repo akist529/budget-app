@@ -11,7 +11,7 @@ export default function DarkMenu(props: any) {
     }, []);
 
     return (
-        <div id="dark_menu" className="absolute left-72 top-20 bg-white dark:bg-indigo-950 dark:text-white px-2 py-4 rounded-xl border">
+        <div id="dark_menu" className="absolute left-60 top-20 bg-white dark:bg-indigo-950 dark:text-white px-2 py-4 rounded-xl border">
             <ul className="flex flex-col">
                 <li>
                     <button

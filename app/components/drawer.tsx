@@ -3,18 +3,14 @@ import { NavLink, useLocation } from "@remix-run/react";
 import { AiFillBank } from "@icons/ai";
 import { BiLogIn } from "@icons/bi";
 import { CgClose } from "@icons/cg";
-import { GrMoney, GrSystem } from "@icons/gr";
-import { MdLightMode, MdDarkMode, MdOutlineDarkMode, MdAccountBox, MdHome } from "@icons/md";
+import { GrMoney } from "@icons/gr";
+import { ImProfile } from "@icons/im";
+import { MdAccountBox, MdHome } from "@icons/md";
 import { RiMoneyDollarBoxFill } from "@icons/ri";
 
 export default function Drawer(props: any) {
     const { setDisplayDrawer, darkModeSystem, useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting } = props;
     const location = useLocation();
-
-    const toggleDarkMode = useCallback((state: boolean) => {
-        setDarkModeSetting(state);
-        setUseDarkModeSystem(false);
-    }, []);
 
     const changeTheme = useCallback(() => {
         const themeSelect = document.getElementById("theme") as HTMLSelectElement;
@@ -122,6 +118,20 @@ export default function Drawer(props: any) {
                                     "size-6 icon-violet-500" : 
                                     "size-6 icon-black dark:icon-white dark:group-hover/sample:icon-black"} />
                                 Expenses
+                            </NavLink>
+                        </li>
+                        <li className="flex justify-start align-center dark:hover:text-black">
+                            <NavLink
+                                to="/profile"
+                                onClick={() => setDisplayDrawer(false)}
+                                className={({ isActive, isPending }) => isActive ? 
+                                    "w-full p-4 bg-slate-200 text-violet-500 font-bold rounded-md group/sample flex items-center gap-3" : 
+                                    "w-full p-4 active:bg-slate-200 hover:bg-slate-100 rounded-md group/sample flex items-center gap-3"}
+                            >
+                                <ImProfile className={(location.pathname === "/profile") ? 
+                                    "size-6 icon-violet-500" : 
+                                    "size-6 icon-black dark:icon-white dark:group-hover/sample:icon-black"} />
+                                Profile
                             </NavLink>
                         </li>
                     </ul>
