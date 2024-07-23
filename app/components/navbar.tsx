@@ -8,7 +8,7 @@ export default function Navbar(props: any) {
     const { setDisplayDrawer, darkModeSystem, useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting, displayDarkMenu, setDisplayDarkMenu } = props;
 
     return (
-        <header className="grid grid-cols-2 lg:grid-cols-3 px-5 py-5 sm:px-10 dark:bg-violet-950/25 border-b border-gray-900">
+        <header className="grid grid-cols-2 lg:grid-cols-3 content-center px-5 sm:px-10 dark:bg-violet-950/25 border-b border-gray-900 h-16">
             <div className="flex-1 flex justify-start items-center gap-5">
                 <NavLink
                     to="/"

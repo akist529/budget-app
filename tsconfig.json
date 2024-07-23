@@ -25,6 +25,7 @@
         "paths": {
             "~/*": ["./app/*"],
             "@components/*": ["./app/components/*"],
+            "@routes/*": ["./app/routes/*"],
             "@icons/*": ["./node_modules/rocketicons/*"]
         },
         "noEmit": true
