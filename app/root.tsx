@@ -1,5 +1,5 @@
-import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
-import { useState, useEffect, useMemo } from "react";
+import { Links, Meta, Outlet, Scripts, MetaFunction } from "@remix-run/react";
+import { useState, useEffect } from "react";
 import type { LinksFunction } from "@remix-run/node";
 import stylesheet from "~/tailwind.css?url";
 import Navbar from '@components/navbar';
@@ -10,6 +10,16 @@ import IndexPage from './routes/index';
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesheet, media: '(prefers-color-scheme: dark)' }
 ];
+
+export const meta: MetaFunction = () => {
+    return [
+        {
+            name: "viewport",
+            content: "width=device-width,initial-scale=1"
+        },
+        { title: "Home - Budget" }
+    ];
+};
 
 export default function App() {
     const [displayDrawer, setDisplayDrawer] = useState(false);
@@ -40,7 +50,6 @@ export default function App() {
                     rel="icon"
                     href="data:image/x-icon;base64,AA"
                 />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <Meta />
                 <Links />
             </head>
