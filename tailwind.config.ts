@@ -9,5 +9,6 @@ export default {
   plugins: [
     icons
   ],
+  darkMode: 'selector'
 } satisfies Config
 
