@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animate-drawer {
+    animation: drawer 0.3s ease-in-out;
+}
+
+@keyframes drawer {
+    from {
+        right: -320px;
+    } to {
+        right: 0;
+    }
+}

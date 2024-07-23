@@ -1,7 +1,6 @@
 export default function Index() {
     return (
-        <div id="index">
-            <h1>Hello, world!</h1>
+        <div id="index" className="w-full h-screen dark:bg-violet-950/25">
         </div>
     );
 }
