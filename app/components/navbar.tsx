@@ -1,5 +1,4 @@
 import { NavLink } from "@remix-run/react";
-import { useMemo, useState } from "react";
 import { AiFillBank } from "@icons/ai";
 import { SlMenu } from "@icons/sl";
 import { BiLogIn } from "@icons/bi";
@@ -13,9 +12,9 @@ export default function Navbar(props: any) {
             <div className="flex-1 flex justify-start items-center gap-5">
                 <NavLink
                     to="/"
-                    className="flex items-center gap-1 text-violet-500 dark:text-white text-4xl font-bold"
+                    className="flex items-center gap-1 dark:text-white text-4xl font-bold"
                 >
-                    <AiFillBank className="flex-initial size-12 icon-violet-500 dark:icon-white" />
+                    <AiFillBank className="flex-initial size-12 icon-violet-500" />
                     BUDGET
                 </NavLink>
                 <button
@@ -26,26 +25,26 @@ export default function Navbar(props: any) {
                 >
                     {
                         (useDarkModeSystem && darkModeSystem) || (!useDarkModeSystem && darkModeSetting) ? 
-                            <MdOutlineDarkMode className="size-12 icon-violet-500 dark:icon-white" /> : 
-                            <MdOutlineLightMode className="size-12 icon-violet-500 dark:icon-white" /> 
+                            <MdOutlineDarkMode className="size-12 icon-black dark:icon-white" /> : 
+                            <MdOutlineLightMode className="size-12 icon-black dark:icon-white" /> 
                     }
                 </button>
             </div>
             <nav className="flex-1 hidden lg:flex justify-between items-center text-xl dark:text-white">
                 <ul className="flex-1 justify-center items-center hidden lg:flex">
-                    <li className="flex flex-initial justify-center hover:bg-slate-100 dark:hover:bg-indigo-900 active:bg-slate-200 rounded-3xl">
+                    <li className="flex flex-initial justify-center hover:bg-slate-100 dark:hover:bg-indigo-950 active:bg-slate-200 rounded-3xl">
                         <NavLink
                             to="/"
                             className="px-5 py-2"
                         >Home</NavLink>
                     </li>
-                    <li className="flex flex-initial justify-center hover:bg-slate-100 active:bg-slate-200 rounded-3xl">
+                    <li className="flex flex-initial justify-center hover:bg-slate-100 dark:hover:bg-indigo-950 active:bg-slate-200 rounded-3xl">
                         <NavLink
                             to="/budgets"
                             className="px-5 py-2"
                         >Budgets</NavLink>
                     </li>
-                    <li className="flex flex-initial justify-center hover:bg-slate-100 active:bg-slate-200 rounded-3xl">
+                    <li className="flex flex-initial justify-center hover:bg-slate-100 dark:hover:bg-indigo-950 active:bg-slate-200 rounded-3xl">
                         <NavLink
                             to="/expenses"
                             className="px-5 py-2"
@@ -56,7 +55,7 @@ export default function Navbar(props: any) {
             <div className="flex-1 lg:flex justify-end items-center gap-5 hidden dark:text-white">
                 <NavLink
                     to="/login"
-                    className="flex justify-end items-center hover:bg-slate-100 active:bg-slate-200 rounded-3xl px-5 py-2"
+                    className="flex justify-end items-center hover:bg-slate-100 dark:hover:bg-indigo-950 active:bg-slate-200 rounded-3xl px-5 py-2"
                 >
                     Log in
                     <BiLogIn className="size-6 icon-black dark:icon-white" />

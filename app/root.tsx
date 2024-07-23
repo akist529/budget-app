@@ -23,6 +23,12 @@ export default function App() {
         }
     }, []);
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.addEventListener("resize", () => setDisplayDrawer(false));
+        }
+    }, []);
+
     const [useDarkModeSystem, setUseDarkModeSystem] = useState(true);
     const [darkModeSetting, setDarkModeSetting] = useState(darkModeSystem);
     const [displayDarkMenu, setDisplayDarkMenu] = useState(false);
@@ -39,7 +45,17 @@ export default function App() {
                 <Links />
             </head>
             <body className="dark:bg-black">
-                { displayDrawer && <Drawer setDisplayDrawer={setDisplayDrawer} /> }
+                { displayDrawer && 
+                    <div className="absolute left-0 top-0 w-full h-screen bg-black/75">
+                        <Drawer
+                            setDisplayDrawer={setDisplayDrawer}
+                            darkModeSystem={darkModeSystem}
+                            useDarkModeSystem={useDarkModeSystem}
+                            setUseDarkModeSystem={setUseDarkModeSystem}
+                            darkModeSetting={darkModeSetting}
+                            setDarkModeSetting={setDarkModeSetting}
+                        />
+                    </div> }
                 { displayDarkMenu && 
                     <DarkMenu
                         useDarkModeSystem={useDarkModeSystem}
