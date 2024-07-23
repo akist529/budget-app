@@ -24,6 +24,9 @@ export const meta: MetaFunction = () => {
 export default function App() {
     const [displayDrawer, setDisplayDrawer] = useState(false);
     const [darkModeSystem, setDarkModeSystem] = useState(false);
+    const [useDarkModeSystem, setUseDarkModeSystem] = useState(true);
+    const [darkModeSetting, setDarkModeSetting] = useState(darkModeSystem);
+    const [displayDarkMenu, setDisplayDarkMenu] = useState(false);
 
     useEffect(() => {
         if ((typeof window !== "undefined") && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches) {
@@ -36,12 +39,9 @@ export default function App() {
     useEffect(() => {
         if (typeof window !== "undefined") {
             window.addEventListener("resize", () => setDisplayDrawer(false));
+            window.addEventListener("resize", () => setDisplayDarkMenu(false));
         }
     }, []);
-
-    const [useDarkModeSystem, setUseDarkModeSystem] = useState(true);
-    const [darkModeSetting, setDarkModeSetting] = useState(darkModeSystem);
-    const [displayDarkMenu, setDisplayDarkMenu] = useState(false);
 
     return (
         <html className={ useDarkModeSystem ? (darkModeSystem ? "dark" : "") : (darkModeSetting ? "dark" : "") }>
