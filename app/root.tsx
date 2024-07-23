@@ -5,7 +5,6 @@ import stylesheet from "~/tailwind.css?url";
 import Navbar from '@components/navbar';
 import Drawer from '@components/drawer';
 import DarkMenu from "@components/darkmenu";
-import IndexPage from './routes/index';
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesheet, media: '(prefers-color-scheme: dark)' }
@@ -82,7 +81,6 @@ export default function App() {
                     displayDarkMenu={displayDarkMenu}
                     setDisplayDarkMenu={setDisplayDarkMenu}
                 />
-                <IndexPage />
                 <Outlet />
                 <Scripts />
             </body>
