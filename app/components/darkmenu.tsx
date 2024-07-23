@@ -19,7 +19,7 @@ export default function DarkMenu(props: any) {
                         onClick={() => toggleDarkMode(false)}
                     >
                         Light Mode
-                        <MdLightMode />
+                        <MdLightMode className="icon-violet-500" />
                     </button>
                 </li>
                 <li>
@@ -28,7 +28,7 @@ export default function DarkMenu(props: any) {
                         onClick={() => toggleDarkMode(true)}
                     >
                         Dark Mode
-                        <MdDarkMode />
+                        <MdDarkMode className="icon-violet-500" />
                     </button>
                 </li>
                 <li>
@@ -37,7 +37,7 @@ export default function DarkMenu(props: any) {
                         onClick={() => setUseDarkModeSystem(true)}
                     >
                         System Setting
-                        <GrSystem />
+                        <GrSystem className="icon-violet-500" />
                     </button>
                 </li>
             </ul>
