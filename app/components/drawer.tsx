@@ -129,21 +129,24 @@ export default function Drawer(props: any) {
                 <hr className="py-2 opacity-15" />
                 <div className="flex justify-center items-center gap-3">
                     <label htmlFor="theme">Theme</label>
-                    <select name="theme" id="theme" className="text-white bg-violet-500 p-4 rounded-md cursor-pointer" onChange={() => changeTheme()}>
+                    <select
+                        name="theme"
+                        id="theme"
+                        className="text-white bg-violet-500 p-4 rounded-md cursor-pointer"
+                        onChange={() => changeTheme()}
+                        defaultValue={useDarkModeSystem ? "system" : (darkModeSetting ? "dark" : "light")}
+                    >
                         <option
-                            selected={!useDarkModeSystem && !darkModeSetting}
                             value="light"
                         >
                             Light Mode
                         </option>
                         <option
-                            selected={!useDarkModeSystem && darkModeSetting}
                             value="dark"
                         >
                             Dark Mode
                         </option>
                         <option
-                            selected={useDarkModeSystem}
                             value="system"
                         >
                             System Setting
