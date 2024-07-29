@@ -6,6 +6,7 @@ import Navbar from '@components/navbar';
 import Drawer from '@components/drawer';
 import DarkMenu from "@components/darkmenu";
 import { AppContext } from "@contexts/AppContext";
+import Footer from "@components/footer";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesheet, media: '(prefers-color-scheme: dark)' }
@@ -83,6 +84,7 @@ export default function App() {
                     displayDarkMenu, setDisplayDarkMenu,
                     token, setToken
                 }} />
+                <Footer />
                 <Scripts />
             </body>
         </html>
