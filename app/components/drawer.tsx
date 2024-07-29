@@ -1,16 +1,29 @@
-import { useCallback } from "react";
-import { NavLink, useLocation } from "@remix-run/react";
+import { useCallback, useContext } from "react";
+import { NavLink, useLocation, useNavigate } from "@remix-run/react";
 import { AiFillBank } from "@icons/ai";
-import { BiLogIn } from "@icons/bi";
+import { BiLogIn, BiLogOut } from "@icons/bi";
 import { CgClose } from "@icons/cg";
 import { GrMoney } from "@icons/gr";
 import { ImProfile } from "@icons/im";
 import { MdAccountBox, MdHome } from "@icons/md";
 import { RiMoneyDollarBoxFill } from "@icons/ri";
+import { AppContext } from "@contexts/AppContext";
+import AppContextType from "@customTypes/AppContextType";
 
 export default function Drawer(props: any) {
-    const { setDisplayDrawer, darkModeSystem, useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting } = props;
+    const appContext = useContext(AppContext);
+    const { setDisplayDrawer, useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting, token, setToken } = appContext as AppContextType;
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const logOut = useCallback(() => {
+        if (typeof window !== "undefined") {
+            sessionStorage.removeItem('token');
+            setToken("");
+            setDisplayDrawer(false);
+            navigate("/");
+        }
+    }, []);
 
     const changeTheme = useCallback(() => {
         const themeSelect = document.getElementById("theme") as HTMLSelectElement;
@@ -46,20 +59,26 @@ export default function Drawer(props: any) {
                 <nav>
                     <ul className="flex flex-col gap-1">
                         <li className="flex justify-start align-center dark:hover:text-black dark:hover:icon-black">
-                            <NavLink
-                                to="/login"
-                                onClick={() => setDisplayDrawer(false)}
-                                className={({ isActive, isPending }) => isActive ? 
-                                    "w-full p-4 bg-slate-200 text-violet-500 font-bold rounded-md group/sample flex items-center gap-3" : 
-                                    "w-full p-4 active:bg-slate-200 hover:bg-slate-100 rounded-md group/sample flex items-center gap-3"}
-                            >
-                                <BiLogIn
-                                    className={(location.pathname === "/login") ? 
-                                        "size-6 icon-violet-500" : 
-                                        "size-6 icon-black dark:icon-white dark:group-hover/sample:icon-black"}
-                                />
-                                Log in
-                            </NavLink>
+                            { token ? 
+                                <button onClick={logOut} className="w-full p-4 active:bg-slate-200 hover:bg-slate-100 rounded-md group/sample flex items-center gap-3">
+                                    <BiLogOut className="size-6 icon-black dark:icon-white dark:group-hover/sample:icon-black" />
+                                    Log out
+                                </button> : 
+                                <NavLink
+                                    to="/login"
+                                    onClick={() => setDisplayDrawer(false)}
+                                    className={({ isActive, isPending }) => isActive ? 
+                                        "w-full p-4 bg-slate-200 text-violet-500 font-bold rounded-md group/sample flex items-center gap-3" : 
+                                        "w-full p-4 active:bg-slate-200 hover:bg-slate-100 rounded-md group/sample flex items-center gap-3"}
+                                >
+                                    <BiLogIn
+                                        className={(location.pathname === "/login") ? 
+                                            "size-6 icon-violet-500" : 
+                                            "size-6 icon-black dark:icon-white dark:group-hover/sample:icon-black"}
+                                    />
+                                    Log in
+                                </NavLink>
+                            }
                         </li>
                         <li className="flex justify-start align-center dark:hover:text-black">
                             <NavLink
