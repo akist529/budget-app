@@ -1,9 +1,12 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useContext } from "react";
 import { MdDarkMode, MdLightMode } from "@icons/md";
 import { GrSystem } from "@icons/gr";
+import { AppContext } from "@contexts/AppContext";
+import AppContextType from "@customTypes/AppContextType";
 
 export default function DarkMenu(props: any) {
-    const { useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting } = props;
+    const appContext = useContext(AppContext);
+    const { useDarkModeSystem, setUseDarkModeSystem, darkModeSetting, setDarkModeSetting } = appContext as AppContextType;
 
     const toggleDarkMode = useCallback((state: boolean) => {
         setDarkModeSetting(state);

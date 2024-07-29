@@ -5,6 +5,7 @@ import stylesheet from "~/tailwind.css?url";
 import Navbar from '@components/navbar';
 import Drawer from '@components/drawer';
 import DarkMenu from "@components/darkmenu";
+import { AppContext } from "@contexts/AppContext";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesheet, media: '(prefers-color-scheme: dark)' }
@@ -26,6 +27,7 @@ export default function App() {
     const [useDarkModeSystem, setUseDarkModeSystem] = useState(true);
     const [darkModeSetting, setDarkModeSetting] = useState(darkModeSystem);
     const [displayDarkMenu, setDisplayDarkMenu] = useState(false);
+    const [token, setToken] = useState("");
 
     useEffect(() => {
         if ((typeof window !== "undefined") && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches) {
@@ -39,6 +41,7 @@ export default function App() {
         if (typeof window !== "undefined") {
             window.addEventListener("resize", () => setDisplayDrawer(false));
             window.addEventListener("resize", () => setDisplayDarkMenu(false));
+            setToken(sessionStorage.getItem("token") || "");
         }
     }, []);
 
@@ -53,35 +56,33 @@ export default function App() {
                 <Links />
             </head>
             <body className="dark:bg-black">
-                { displayDrawer && 
-                    <div className="absolute left-0 top-0 w-full h-screen bg-black/75">
-                        <Drawer
-                            setDisplayDrawer={setDisplayDrawer}
-                            darkModeSystem={darkModeSystem}
-                            useDarkModeSystem={useDarkModeSystem}
-                            setUseDarkModeSystem={setUseDarkModeSystem}
-                            darkModeSetting={darkModeSetting}
-                            setDarkModeSetting={setDarkModeSetting}
-                        />
-                    </div> }
-                { displayDarkMenu && 
-                    <DarkMenu
-                        useDarkModeSystem={useDarkModeSystem}
-                        setUseDarkModeSystem={setUseDarkModeSystem}
-                        darkModeSetting={darkModeSetting}
-                        setDarkModeSetting={setDarkModeSetting}
-                    /> }
-                <Navbar
-                    setDisplayDrawer={setDisplayDrawer}
-                    darkModeSystem={darkModeSystem}
-                    useDarkModeSystem={useDarkModeSystem}
-                    setUseDarkModeSystem={setUseDarkModeSystem}
-                    darkModeSetting={darkModeSetting}
-                    setDarkModeSetting={setDarkModeSetting}
-                    displayDarkMenu={displayDarkMenu}
-                    setDisplayDarkMenu={setDisplayDarkMenu}
-                />
-                <Outlet />
+                <AppContext.Provider
+                    value={{ 
+                        displayDrawer, setDisplayDrawer,
+                        darkModeSystem, setDarkModeSystem,
+                        useDarkModeSystem, setUseDarkModeSystem,
+                        darkModeSetting, setDarkModeSetting,
+                        displayDarkMenu, setDisplayDarkMenu,
+                        token, setToken
+                    }}
+                >
+                    { displayDrawer && 
+                        <div className="absolute left-0 top-0 w-full h-screen bg-black/75">
+                            <Drawer />
+                        </div> }
+                    { displayDarkMenu && 
+                        <DarkMenu /> 
+                    }
+                    <Navbar />
+                </AppContext.Provider>
+                <Outlet context={{
+                    displayDrawer, setDisplayDrawer,
+                    darkModeSystem, setDarkModeSystem,
+                    useDarkModeSystem, setUseDarkModeSystem,
+                    darkModeSetting, setDarkModeSetting,
+                    displayDarkMenu, setDisplayDarkMenu,
+                    token, setToken
+                }} />
                 <Scripts />
             </body>
         </html>
